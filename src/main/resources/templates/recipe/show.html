@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Recipe Home</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"
+          th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}">
+
+
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"
+            th:href="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"
+    ></script>
+</head>
+<body>
+
+<div class="container-fluid" style="margin-top: 20px">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h1 class="panel-title" th:text="${recipe.descriptions}">Recipe Description Here!</h1>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h4>Categories: </h4>
+                        </div>
+                        <div class="col-md-9">
+                            <ul th:each="category : ${recipe.categorySet}">
+                                <li th:text="${category.description}">Cat one</li>
+                                <li th:remove="all">Cat two</li>
+                                <li th:remove="all">Cat three</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h4>Prep Time:</h4>
+                        </div>
+                        <div class="col-md-3">
+                            <p th:text="${(recipe.prepTime)+ ' Min'}">30 min</p>
+                        </div>
+                        <div class="col-md-3">
+                            <h4>Difficulty:</h4>
+                        </div>
+                        <div class="col-md-3">
+                            <p th:text="${recipe.difficulty}">Easy</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h4>Cook Time:</h4>
+                        </div>
+                        <div class="col-md-3">
+                            <p th:text="${recipe.cookTime + ' Min'}">30 min</p>
+                        </div>
+                        <div class="col-md-3">
+                            <h4>Servings:</h4>
+                        </div>
+                        <div class="col-md-3">
+                            <p th:text="${recipe.servings + ' Min'}">4 min</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h4>Source:</h4>
+                        </div>
+                        <div class="col-md-3">
+                            <p th:text="${recipe.source + ' Min'}">30 min</p>
+                        </div>
+                        <div class="col-md-3">
+                            <h4>Url:</h4>
+                        </div>
+                        <div class="col-md-3">
+                            <p th:text="${recipe.url}">http://www.example.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h1 class="panel-title">Ingredients</h1>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <ul th:each="ingredient : ${recipe.ingredients}">
+                                <li th:remove="all">1 cup of milk</li>
+                                <li th:remove="all">1 teaspoon of choclate</li>
+                                <li th:text="${ingredient.getAmount()+' '+ ingredient.uom.getDescription()+' -' +ingredient.description}">1 teaspoon of water</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h1 class="panel-title" >Directions</h1>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p th:text="${recipe.directions}">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                                when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
+                                into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum
+                                passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h1 class="panel-title" >Notes</h1>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p th:text="${recipe.notes.recipeNotes}">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                                when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
+                                into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum
+                                passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
