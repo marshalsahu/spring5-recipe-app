@@ -1,8 +1,12 @@
 package com.marshal.domain;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
 import javax.persistence.*;
 import java.util.Set;
-
+@Data
+@EqualsAndHashCode(exclude = {"recipes"})
 @Entity
 public class Category {
     @Id
@@ -13,27 +17,5 @@ public class Category {
     @ManyToMany(mappedBy = "categorySet")
     private Set<Recipe> recipes;
 
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Set<Recipe> getRecipes() {
-        return recipes;
-    }
-
-    public void setRecipes(Set<Recipe> recipes) {
-        this.recipes = recipes;
-    }
 }
