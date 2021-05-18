@@ -83,7 +83,7 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
 
         //Yummy Guac
         Recipe guacRecipe = new Recipe();
-        guacRecipe.setDescriptions("Perfect Guacamole");
+        guacRecipe.setDescription("Perfect Guacamole");
         guacRecipe.setPrepTime(10);
         guacRecipe.setCookTime(0);
         guacRecipe.setDifficulty(Difficulty.EASY);
@@ -131,7 +131,7 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
 
         //Yummy Tacos
         Recipe tacosRecipe = new Recipe();
-        tacosRecipe.setDescriptions("Spicy Grilled Chicken Taco");
+        tacosRecipe.setDescription("Spicy Grilled Chicken Taco");
         tacosRecipe.setCookTime(9);
         tacosRecipe.setPrepTime(20);
         tacosRecipe.setDifficulty(Difficulty.MODERATE);

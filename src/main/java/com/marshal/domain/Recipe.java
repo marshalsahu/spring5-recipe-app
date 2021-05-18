@@ -13,7 +13,7 @@ public class Recipe {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String descriptions;
+    private String description;
     private Integer prepTime;
     private Integer cookTime;
     private Integer servings;
