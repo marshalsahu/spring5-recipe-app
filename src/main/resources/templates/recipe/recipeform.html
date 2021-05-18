@@ -21,7 +21,7 @@
 <div class="container-fluid" style="margin-top: 20px">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
-            <form th:object="${recipe}" th:action="@{/recipe/}">
+            <form th:object="${recipe}" th:action="@{/recipe/}" method="post">
                 <input type="hidden" th:field="*{id}"/>
                 <div class="panel-group">
                     <div class="panel panel-primary">
@@ -65,10 +65,10 @@
                                 </div>
                                 <div class="col-md-4 form-group">
                                     <label>Difficulty:</label>
-                                    <select class="form-control">
-                                        <option>Easy</option>
-                                        <option>Medium</option>
-                                        <option>Hard</option>
+                                    <select class="form-control" th:field="*{difficulty}">
+                                        <option th:each="difficultyValue: ${T(com.marshal.domain.Difficulty).values()}"
+                                                th:value="${difficultyValue.name()}"
+                                                th:text="${difficultyValue.name()}">Easy</option>
                                     </select>
                                 </div>
                             </div>

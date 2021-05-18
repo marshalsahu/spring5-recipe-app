@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Upload Image</title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"
+        th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}">
+
+
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+          integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"
+          th:href="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"
+  ></script>
+</head>
+<body>
+
+<div class="container-fluid" style="margin-top: 20px">
+  <div class="row" >
+    <div class="col-md-10 col-md-offset-1">
+      <form th:action="@{'/recipe/'+${recipe.id}+'/image'}" method="post" action="http:\\localhost"
+            enctype="multipart/form-data">
+        <div class="panel-group">
+          <div class="panel panel-primary" style="margin-top:10px;margin-bottom:15px">
+            <div class="panel-heading">
+              <h1 class="panel-title"> Upload a Recipe Image</h1>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-md-6 form-group">
+                  <label class="control-label">Select File</label>
+                  <input type="file" class="file" id="imageFile" name="imageFile">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-offset-5">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>
