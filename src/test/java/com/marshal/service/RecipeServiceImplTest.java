@@ -3,6 +3,7 @@ package com.marshal.service;
 import com.marshal.converters.RecipeCommandToRecipe;
 import com.marshal.converters.RecipeToRecipeCommand;
 import com.marshal.domain.Recipe;
+import com.marshal.exceptions.NothingFoundException;
 import com.marshal.repositories.RecipeRepository;
 import org.junit.Before;
 import org.junit.Test;
@@ -58,5 +59,15 @@ public class RecipeServiceImplTest {
        assertEquals(recipes.size(),1);
 
        verify(recipeRepository, times(1)).findAll();
+    }
+
+    @Test(expected = NothingFoundException.class)
+    public void getRecipeByIdTestNotFound(){
+        Optional<Recipe> recipeOptional = Optional.empty();
+
+        when(recipeRepository.findById(anyLong())).thenReturn(recipeOptional);
+
+        Recipe recipeReturned = recipeService.getRecipesById(1L);
+        //should go boom
     }
 }

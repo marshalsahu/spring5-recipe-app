@@ -1,6 +1,7 @@
 package com.marshal.controller;
 
 import com.marshal.domain.Recipe;
+import com.marshal.exceptions.NothingFoundException;
 import com.marshal.service.RecipeService;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,17 +22,20 @@ public class RecipeControllerTest {
     @Mock
     RecipeService recipeService;
 
+    MockMvc mockMvc;
+
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
         recipeController = new RecipeController(recipeService);
+        mockMvc = MockMvcBuilders.standaloneSetup(recipeController).build();
     }
 
     @Test
     public void testGetRecipe() throws Exception {
         Recipe recipe = new Recipe();
         recipe.setId(1L);
-        MockMvc mockMvc = MockMvcBuilders.standaloneSetup(recipeController).build();
+
 
         when(recipeService.getRecipesById(anyLong())).thenReturn(recipe);
 
@@ -39,5 +43,14 @@ public class RecipeControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(view().name("recipe/show"))
                 .andExpect(model().attributeExists("recipe"));
+    }
+
+    @Test
+    public void getRecipeNotFound() throws Exception{
+        Recipe recipe = new Recipe();
+        recipe.setId(1L);
+        when(recipeService.getRecipesById(anyLong())).thenThrow(NothingFoundException.class);
+        mockMvc.perform(MockMvcRequestBuilders.get("/recipe/1/show"))
+                .andExpect(status().isNotFound());
     }
 }
