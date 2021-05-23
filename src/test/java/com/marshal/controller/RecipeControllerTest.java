@@ -47,10 +47,17 @@ public class RecipeControllerTest {
 
     @Test
     public void getRecipeNotFound() throws Exception{
-        Recipe recipe = new Recipe();
-        recipe.setId(1L);
         when(recipeService.getRecipesById(anyLong())).thenThrow(NothingFoundException.class);
         mockMvc.perform(MockMvcRequestBuilders.get("/recipe/1/show"))
-                .andExpect(status().isNotFound());
+                .andExpect(status().isNotFound())
+                .andExpect(view().name("404error"));
+    }
+
+    @Test
+    public void getRecipeNumberFormat() throws Exception{
+        when(recipeService.getRecipesById(anyLong())).thenThrow(NumberFormatException.class);
+        mockMvc.perform(MockMvcRequestBuilders.get("/recipe/abc/show"))
+                .andExpect(status().isBadRequest())
+                .andExpect(view().name("400error"));
     }
 }
